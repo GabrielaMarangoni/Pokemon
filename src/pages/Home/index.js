@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import HeaderPage from '../../components/Header/index';
+
 
 import { Container, Content, Images, Pokemon} from './styles';
 
@@ -74,26 +76,27 @@ const Home = () => {
     ])
     return (
         <>          
-        <Container> 
-            <Content>
-                { pokemon.map((bicho) => {
-                    return(
-                        <Pokemon key={bicho.id}>
-                            <h1>{bicho.nome}</h1>
-                            <Images src={bicho.imagem}/>
-                            <h2>Peso: {bicho.peso}</h2>
-                            <h2>Tamanho: {bicho.Tamanho}</h2>
-                            <h2>Tipo: {bicho.Tipo}</h2>
-                            <h2>Habilidade: {bicho.Habilidade}</h2>
-                            <h2>Hp: {bicho.Hp}</h2>
-                            <h2>Defesa: {bicho.Defesa}</h2>
-                            <h2>Ataque: {bicho.Ataque}</h2>
-                            <h2>Velocidade: {bicho.Velocidade}</h2>
-                        </Pokemon>
-                    )
-                })  }
-            </Content>           
-        
+        <Container>            
+            <HeaderPage/>
+                <Content>
+                    { pokemon.map((bicho) => {
+                        return(
+                            <Pokemon key={bicho.id}>
+                                <h1>{bicho.nome}</h1>
+                                <Images src={bicho.imagem}/>
+                                <h2>Peso: {bicho.peso}</h2>
+                                <h2>Tamanho: {bicho.Tamanho}</h2>
+                                <h2>Tipo: {bicho.Tipo}</h2>
+                                <h2>Habilidade: {bicho.Habilidade}</h2>
+                                <h2>Hp: {bicho.Hp}</h2>
+                                <h2>Defesa: {bicho.Defesa}</h2>
+                                <h2>Ataque: {bicho.Ataque}</h2>
+                                <h2>Velocidade: {bicho.Velocidade}</h2>
+                            </Pokemon>
+                        )
+                    })  }
+                </Content>      
+            
         </Container>                
         </>
     )

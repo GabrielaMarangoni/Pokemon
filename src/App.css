@@ -1,6 +1,6 @@
 .App {
   text-align: center;
-  padding-top: 25px;
+  padding-top: 30px;
 }
 
 .App-logo {
@@ -13,6 +13,8 @@
     animation: App-logo-spin infinite 20s linear;
   }
 }
+
+@import url('https://fonts.googleapis.com/css?family=Josefin+Sans');
 
 .App-header {
   background-color: #282c34;

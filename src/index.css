@@ -1,5 +1,5 @@
 body {
-  background-color: aqua;
+  background-color: #f05545;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
@@ -23,3 +23,5 @@ input, button, textarea {
 button {
   cursor: pointer;
 }
+
+@import url('https://fonts.googleapis.com/css?family=Anton');

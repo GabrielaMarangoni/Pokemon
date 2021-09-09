@@ -14,7 +14,6 @@ export const Container = styled.div`
     border-radius: 20px;
     justify-content: center; */
 `
-
 export const Images = styled.img`
     background: #2F4F4F;
     width: 15vw;
@@ -58,13 +57,15 @@ export const Pokemon = styled.div`
 `;
 
 export const Content = styled.div`
-    width: 85vw;
+    width: 72vw;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 2vh; 
+    margin-top: 15vh; 
     padding: 100px 10vh 100px 10vh;
     display: grid;
     grid-template-columns: 5fr 5fr 5fr 5fr;
     gap: 100px;
     overflow-y: auto;
+    background-color: white;
+    border-radius: 30px;
 `
