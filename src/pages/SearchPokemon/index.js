@@ -28,7 +28,7 @@ const Home = () => {
         const response = await axios.get(url);
         toArray.push(response.data);
         setPokemonType(response.data.types[0].type.name);
-        setPokemonAbility(response.data.abilities[1].ability.name);
+        setPokemonAbility(response.data.abilities[0].ability.name);
         setPokemonData(toArray);
       } catch (error) {
         console.log(error);
