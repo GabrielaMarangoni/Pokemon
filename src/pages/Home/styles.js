@@ -4,47 +4,32 @@ export const Container = styled.div`
     height: fit-content;
     display: flex; 
     box-sizing: border-box;
-   /* height: fit-content;
-    display: flex; 
-    box-sizing: border-box;
-    margin-top: 10vh;
-    margin-left: 10vw;
-    margin-right: 10vw;
-    background-color: white;
-    border-radius: 20px;
-    justify-content: center; */
+    user-select: none; 
 `
 export const Images = styled.img`
-    background: #2F4F4F;
-    width: 15vw;
-    height: 15vw;
+    background: white;
+    width: 13vw;
+    height: 13vw;
     display: flex;
     align-items: center;
     margin-top: 20px;
     object-fit: cover;
-    border-radius: 10px;
-    /* margin-top: 30px;
-    display: flex;
-    align-items: center;
-    min-width: 50px;
-    width: 100%;
-    min-height: 50px;
-    max-height: 50px;
-    height: 50%;
-    border-radius: 10px;
-    //object-fit: cover;
-    background: #2F4F4F; */
+    border-radius: 150px;
 `;
 
 export const Pokemon = styled.div`
     display: flex;
+    margin-left: auto;
+    margin-right: auto;
     flex-direction: column;
     align-items: center;
-    min-width: 250px;
+    min-width: 45px;
     width: 100%;
-    min-height: 250px;
+    min-height: 45px;
     height: 100%;
     border-radius: 10px;
+    background-color: #ffcccb;
+    padding: 15px;
     
     //cursor: pointer;
     
@@ -60,7 +45,7 @@ export const Content = styled.div`
     width: 72vw;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 15vh; 
+    margin-top: 20vh; 
     padding: 100px 10vh 100px 10vh;
     display: grid;
     grid-template-columns: 5fr 5fr 5fr 5fr;
@@ -68,4 +53,4 @@ export const Content = styled.div`
     overflow-y: auto;
     background-color: white;
     border-radius: 30px;
-`
+`;

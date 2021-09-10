@@ -1,9 +1,10 @@
 //import logo from './logo.svg';
 import Home from './pages/Home';
+import  Pokemon  from './pages/SearchPokemon';
 import './App.css';
 
  export default function App() {
-    return <Home/>
+    return <Pokemon/>
 } 
 
 /* function App() {

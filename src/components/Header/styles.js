@@ -8,9 +8,8 @@ export const Header = styled.header`
   flex-direction: row;
   box-sizing: border-box;
   position: fixed;
-  padding: 10px 50px 10px 50px;
-  z-index: 999999;
-  user-select: none; // não deixa o usuário selecionar nada
+  padding: 10px 10px 10px 50px;
+  user-select: none; 
 
   h1{
    color: white;
