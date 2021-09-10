@@ -15,11 +15,13 @@ Para que o arquivo funcione, instale as dependências com o comando:
 ```
 yarn install
 ```
+```
 yarn build
 ```
 Rode o progrma executando:
 ```
 yarn start
+```
 
 
 
