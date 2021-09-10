@@ -1,27 +1,15 @@
 import { useState } from 'react';
 import HeaderPage from '../../components/Header/index';
 import axios from "axios";
+import "../../App.css";
 
 import { Container, Container2, BoxText, BoxTextType, Images, Pokemon, Pokemons, SelectPokemon, LineInputs} from './styles';
 
 const Home = () => {
-    const [pokemon, setPokemon] = useState([
-        {
-            id: 4,
-            nome: 'Pikachu',
-            peso: '50',
-            Tamanho: '3',
-            Tipo: 'eletrico',
-            Habilidade: 'choque',
-            Hp: '100',
-            Defesa: '30',
-            Ataque: '50',
-            Velocidade: '24',
-            imagem: 'https://lh3.googleusercontent.com/proxy/mp1dBFVb6FxhDUYeKiUJMxhhpVjV5Cc4oRQTTwgQwlpXhv4qKqzNF0_gGwoKLvqOQIoMJolQcBSilE84fQYQLKo5WJjEzX7KNntRx-05D3Hk_WLwGXGBUKIYqEZVZovK'
-        }
-    ])
+    const [pokemon, setPokemon] = useState([])
     const [pokemonData, setPokemonData] = useState([]);
     const [pokemonType, setPokemonType] = useState([]);
+    const [pokemonAbility, setPokemonAbility] = useState([]);
       
     const handleSubmit = (e) => {
       e.preventDefault();
@@ -34,6 +22,7 @@ const Home = () => {
         const response = await axios.get(url);
         toArray.push(response.data);
         setPokemonType(response.data.types[0].type.name);
+        setPokemonAbility(response.data.abilities[0].ability.name);
         setPokemonData(toArray);
       } catch (error) {
         console.log(error);
@@ -41,12 +30,16 @@ const Home = () => {
     };
     console.log(pokemonData);
 
+    const handleChange = (e) => {
+        setPokemon(e.target.value.toLowerCase());
+    };
+
     return (
         <>          
             <HeaderPage/> 
             <LineInputs>
                 <form onSubmit={handleSubmit}>
-                    <SelectPokemon placeholder="Escreva o nome do pokemon"/>                
+                    <SelectPokemon onChange={handleChange} placeholder="Escreva o nome do pokemon"/>                
                 </form>
             </LineInputs>         
                 
@@ -71,20 +64,24 @@ const Home = () => {
             </Container> */}
 
             {/* pesquisa pelo nome do pokemon */}
-            <Container2> 
-                <Pokemon key= '1'>
-                    <h1>Pikachu</h1>
-                    <Images src='https://lh3.googleusercontent.com/proxy/mp1dBFVb6FxhDUYeKiUJMxhhpVjV5Cc4oRQTTwgQwlpXhv4qKqzNF0_gGwoKLvqOQIoMJolQcBSilE84fQYQLKo5WJjEzX7KNntRx-05D3Hk_WLwGXGBUKIYqEZVZovK'/>
-                    <BoxText>Peso: 5</BoxText>
-                    <BoxText>Tamanho: 100</BoxText>
-                    <BoxText>Hp: 200</BoxText>
-                    <BoxText>Defesa: 50</BoxText>
-                    <BoxText>Ataque: 30</BoxText>
-                    <BoxText>Velocidade: 25</BoxText>
-                    <BoxText>Habilidade: choque</BoxText>
-                    <BoxTextType>Tipo: eletrico</BoxTextType>
-                </Pokemon>
-            </Container2>                         
+            {pokemonData.map((data) => {
+                return (
+                    <Container2> 
+                        <Pokemon>  
+                            <h1 className="capitalized">{data.name}</h1>                          
+                            <Images src={data.sprites["front_default"]}/>
+                            <BoxText>Weight: {data.weight}</BoxText>
+                            <BoxText>Height: {data.height}</BoxText>
+                            <BoxText>Hp: {data.stats[0].base_stat}</BoxText>
+                            <BoxText>Defense: {data.stats[2].base_stat}K</BoxText>
+                            <BoxText>Attack: {data.stats[1].base_stat}K</BoxText>
+                            <BoxText>Speed: {data.stats[5].base_stat}</BoxText>
+                            <BoxText>Abiliity: {pokemonAbility} </BoxText>
+                            <BoxTextType>Type: {pokemonType}</BoxTextType>
+                        </Pokemon>
+                    </Container2>                       
+                );
+            })}
         </>
     )
 }
