@@ -7,58 +7,6 @@ import { Container, Container2, BoxText, BoxTextType, Images, Pokemon, Pokemons,
 const Home = () => {
     const [pokemon, setPokemon] = useState([
         {
-            id: 1,
-            nome: 'Pikachu',
-            peso: '50',
-            Tamanho: '3',
-            Tipo: 'eletrico',
-            Habilidade: 'choque',
-            Hp: '100',
-            Defesa: '30',
-            Ataque: '50',
-            Velocidade: '24',
-            imagem: 'https://lh3.googleusercontent.com/proxy/mp1dBFVb6FxhDUYeKiUJMxhhpVjV5Cc4oRQTTwgQwlpXhv4qKqzNF0_gGwoKLvqOQIoMJolQcBSilE84fQYQLKo5WJjEzX7KNntRx-05D3Hk_WLwGXGBUKIYqEZVZovK'
-        },
-        {
-            id: 2,
-            nome: 'Pikachu',
-            peso: '50',
-            Tamanho: '3',
-            Tipo: 'eletrico',
-            Habilidade: 'choque',
-            Hp: '100',
-            Defesa: '30',
-            Ataque: '50',
-            Velocidade: '24',
-            imagem: 'https://lh3.googleusercontent.com/proxy/mp1dBFVb6FxhDUYeKiUJMxhhpVjV5Cc4oRQTTwgQwlpXhv4qKqzNF0_gGwoKLvqOQIoMJolQcBSilE84fQYQLKo5WJjEzX7KNntRx-05D3Hk_WLwGXGBUKIYqEZVZovK'
-        },
-        {
-            id: 3,
-            nome: 'Pikachu',
-            peso: '50',
-            Tamanho: '3',
-            Tipo: 'eletrico',
-            Habilidade: 'choque',
-            Hp: '100',
-            Defesa: '30',
-            Ataque: '50',
-            Velocidade: '24',
-            imagem: 'https://lh3.googleusercontent.com/proxy/mp1dBFVb6FxhDUYeKiUJMxhhpVjV5Cc4oRQTTwgQwlpXhv4qKqzNF0_gGwoKLvqOQIoMJolQcBSilE84fQYQLKo5WJjEzX7KNntRx-05D3Hk_WLwGXGBUKIYqEZVZovK'
-        },
-        {
-            id: 4,
-            nome: 'Pikachu',
-            peso: '50',
-            Tamanho: '3',
-            Tipo: 'eletrico',
-            Habilidade: 'choque',
-            Hp: '100',
-            Defesa: '30',
-            Ataque: '50',
-            Velocidade: '24',
-            imagem: 'https://lh3.googleusercontent.com/proxy/mp1dBFVb6FxhDUYeKiUJMxhhpVjV5Cc4oRQTTwgQwlpXhv4qKqzNF0_gGwoKLvqOQIoMJolQcBSilE84fQYQLKo5WJjEzX7KNntRx-05D3Hk_WLwGXGBUKIYqEZVZovK'
-        },
-        {
             id: 4,
             nome: 'Pikachu',
             peso: '50',
@@ -72,6 +20,8 @@ const Home = () => {
             imagem: 'https://lh3.googleusercontent.com/proxy/mp1dBFVb6FxhDUYeKiUJMxhhpVjV5Cc4oRQTTwgQwlpXhv4qKqzNF0_gGwoKLvqOQIoMJolQcBSilE84fQYQLKo5WJjEzX7KNntRx-05D3Hk_WLwGXGBUKIYqEZVZovK'
         }
     ])
+    const [pokemonData, setPokemonData] = useState([]);
+    const [pokemonType, setPokemonType] = useState([]);
       
     const handleSubmit = (e) => {
       e.preventDefault();
@@ -82,11 +32,14 @@ const Home = () => {
       try {
         const url = `https://pokeapi.co/api/v2/pokemon/${pokemon}`;
         const response = await axios.get(url);
-        
+        toArray.push(response.data);
+        setPokemonType(response.data.types[0].type.name);
+        setPokemonData(toArray);
       } catch (error) {
         console.log(error);
       }
     };
+    console.log(pokemonData);
 
     return (
         <>          
@@ -97,7 +50,8 @@ const Home = () => {
                 </form>
             </LineInputs>         
                 
-            {/* <Container>
+            {/* Lista pelo tipo do pokemon */}
+            {/* <Container> 
             { pokemon.map((bicho) => {
                     return(
                         <Pokemons key={bicho.id}>
@@ -116,7 +70,8 @@ const Home = () => {
                 })  }
             </Container> */}
 
-            <Container2>
+            {/* pesquisa pelo nome do pokemon */}
+            <Container2> 
                 <Pokemon key= '1'>
                     <h1>Pikachu</h1>
                     <Images src='https://lh3.googleusercontent.com/proxy/mp1dBFVb6FxhDUYeKiUJMxhhpVjV5Cc4oRQTTwgQwlpXhv4qKqzNF0_gGwoKLvqOQIoMJolQcBSilE84fQYQLKo5WJjEzX7KNntRx-05D3Hk_WLwGXGBUKIYqEZVZovK'/>
@@ -129,8 +84,7 @@ const Home = () => {
                     <BoxText>Habilidade: choque</BoxText>
                     <BoxTextType>Tipo: eletrico</BoxTextType>
                 </Pokemon>
-            </Container2>                   
-                
+            </Container2>                         
         </>
     )
 }
