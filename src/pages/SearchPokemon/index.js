@@ -1,16 +1,22 @@
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import HeaderPage from '../../components/Header/index';
+import { useHistory } from 'react-router-dom';
 import axios from "axios";
 import "../../App.css";
 
 import { Container, Container2, BoxText, BoxTextType, Images, Pokemon, Pokemons, SelectPokemon, LineInputs} from './styles';
 
 const Home = () => {
+    const history = useHistory();
     const [pokemon, setPokemon] = useState([])
     const [pokemonData, setPokemonData] = useState([]);
     const [pokemonType, setPokemonType] = useState([]);
     const [pokemonAbility, setPokemonAbility] = useState([]);
+    const [search, setSearch] = useState('');
       
+   /*  const filterType = pokemonType
+        .filter((type) => type.startWith(search)); */
+
     const handleSubmit = (e) => {
       e.preventDefault();
       getPokemon();
@@ -22,7 +28,7 @@ const Home = () => {
         const response = await axios.get(url);
         toArray.push(response.data);
         setPokemonType(response.data.types[0].type.name);
-        setPokemonAbility(response.data.abilities[0].ability.name);
+        setPokemonAbility(response.data.abilities[1].ability.name);
         setPokemonData(toArray);
       } catch (error) {
         console.log(error);
@@ -33,6 +39,14 @@ const Home = () => {
     const handleChange = (e) => {
         setPokemon(e.target.value.toLowerCase());
     };
+
+    /* const goToPokemonType = useCallback(() => {
+        history.push('')
+    }, [])
+
+    const getPokemonType = useCallback(async () => {
+
+    }) */
 
     return (
         <>          
@@ -45,19 +59,19 @@ const Home = () => {
                 
             {/* Lista pelo tipo do pokemon */}
             {/* <Container> 
-            { pokemon.map((bicho) => {
+            { pokemonData.map((data) => {
                     return(
-                        <Pokemons key={bicho.id}>
-                            <h1>{bicho.nome}</h1>
-                            <Images src={bicho.imagem}/>
-                            <BoxText>Peso: {bicho.peso}</BoxText>
-                            <BoxText>Tamanho: {bicho.Tamanho}</BoxText>
-                            <BoxText>Hp: {bicho.Hp}</BoxText>
-                            <BoxText>Defesa: {bicho.Defesa}</BoxText>
-                            <BoxText>Ataque: {bicho.Ataque}</BoxText>
-                            <BoxText>Velocidade: {bicho.Velocidade}</BoxText>
-                            <BoxText>Habilidade: {bicho.Habilidade}</BoxText>
-                            <BoxTextType>Tipo: {bicho.Tipo}</BoxTextType>
+                        <Pokemons>
+                            <h1 className="capitalized">{data.name}</h1>                          
+                            <Images src={data.sprites["front_default"]}/>
+                            <BoxText>Weight: {data.weight}</BoxText>
+                            <BoxText>Height: {data.height}</BoxText>
+                            <BoxText>Hp: {data.stats[0].base_stat}</BoxText>
+                            <BoxText>Defense: {data.stats[2].base_stat}K</BoxText>
+                            <BoxText>Attack: {data.stats[1].base_stat}K</BoxText>
+                            <BoxText>Speed: {data.stats[5].base_stat}</BoxText>
+                            <BoxText>Abiliity: {pokemonAbility} </BoxText>
+                            <BoxTextType>Type: {pokemonType}</BoxTextType>
                         </Pokemons>
                     )
                 })  }

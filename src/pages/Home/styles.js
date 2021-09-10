@@ -30,9 +30,7 @@ export const Pokemon = styled.div`
     border-radius: 10px;
     background-color: #ffcccb;
     padding: 15px;
-    
-    //cursor: pointer;
-    
+        
     h1, h2 {
         width: fit-content;
         display: flex;
